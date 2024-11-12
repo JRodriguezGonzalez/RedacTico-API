@@ -11,5 +11,10 @@ load_dotenv()
 # Configura la sesión para la autenticación
 app.add_middleware(SessionMiddleware, secret_key=os.getenv("SECRET_KEY"))
 
-# Incluye el enrutador de autenticación en la aplicación principal
+# Define un endpoint en la raíz para probar la conexión
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the RedacTico API"}
+
+# Incluye el enrutador de autenticación
 app.include_router(auth_router)
